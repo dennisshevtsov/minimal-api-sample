@@ -90,7 +90,7 @@ public sealed class DeliveryAddressEntityTest
     (
       contact: "test",
       phone: "test",
-      address: "test"
+      address: address
     );
 
     // Assert
