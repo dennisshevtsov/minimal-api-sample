@@ -6,9 +6,9 @@ namespace MinimalApiSample;
 
 public sealed class DeliveryAddressEntity(string contact, string phone, string address)
 {
-  public string Contact { get; set; } = contact;
+  public string Contact { get; set; } = string.IsNullOrWhiteSpace(contact) ? throw new Exception("No delivery address contact.") : contact;
 
-  public string Phone { get; set; } = phone;
+  public string Phone { get; set; } = string.IsNullOrWhiteSpace(phone) ? throw new Exception("No delivery address phone.") : phone;
 
-  public string Address { get; set; } = address;
+  public string Address { get; set; } = string.IsNullOrWhiteSpace(address) ? throw new Exception("No delivery address.") : address;
 }
