@@ -4,8 +4,7 @@
 
 namespace MinimalApiSample;
 
-public sealed class DeliveryEntity(
-  Guid id, IReadOnlyList<DeliveryItemEntity> items, DeliveryAddressEntity pickupAt, DeliveryAddressEntity deliverTo)
+public sealed class DeliveryEntity(Guid id, IReadOnlyList<DeliveryItemEntity> items, DeliveryAddressEntity pickupAt, DeliveryAddressEntity deliverTo)
 {
   public Guid Id { get; set; } = id;
 
