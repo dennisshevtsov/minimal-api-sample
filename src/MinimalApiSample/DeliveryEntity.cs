@@ -9,9 +9,9 @@ public sealed class DeliveryEntity(
 {
   public Guid Id { get; set; } = id;
 
-  public IReadOnlyList<DeliveryItemEntity> Items { get; } = items is not { Count : > 0 } ? throw new Exception("No delivery items.") : items;
+  public IReadOnlyList<DeliveryItemEntity> Items { get; } = items is not { Count : > 0 } ? throw new InvalidDataException("No delivery items.") : items;
 
-  public DeliveryAddressEntity PickupAt { get; } = pickupAt ?? throw new Exception("No pickup address.");
+  public DeliveryAddressEntity PickupAt { get; } = pickupAt ?? throw new InvalidDataException("No pickup address.");
 
-  public DeliveryAddressEntity DeliverTo { get; } = deliverTo ?? throw new Exception("No destination address.");
+  public DeliveryAddressEntity DeliverTo { get; } = deliverTo ?? throw new InvalidDataException("No destination address.");
 }
