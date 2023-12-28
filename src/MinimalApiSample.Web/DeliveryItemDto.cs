@@ -18,4 +18,29 @@ public sealed class DeliveryItemDto
 
   [Required]
   public required int GramsPerUnit { get; init; }
+
+  public DeliveryItemEntity ToEntity() => new
+  (
+    title       : Title,
+    description : Description,
+    units       : Units,
+    gramsPerUnit: GramsPerUnit
+  );
+
+  public static IReadOnlyList<DeliveryItemEntity> ToEntities(IReadOnlyList<DeliveryItemDto> dtos)
+  {
+    if (dtos is not { Count: > 0 })
+    {
+      return [];
+    }
+
+    DeliveryItemEntity[] entities = new DeliveryItemEntity[dtos.Count];
+
+    for (int i = 0; i < dtos.Count; i++)
+    {
+      entities[i] = dtos[i].ToEntity();
+    }
+
+    return entities;
+  }
 }

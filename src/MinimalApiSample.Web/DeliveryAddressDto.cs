@@ -12,4 +12,11 @@ public sealed class DeliveryAddressDto
 
   [Required]
   public required string Address { get; init; }
+
+  public DeliveryAddressEntity ToEntity() => new
+  (
+    contact: Contact,
+    phone  : Phone,
+    address: Address
+  );
 }

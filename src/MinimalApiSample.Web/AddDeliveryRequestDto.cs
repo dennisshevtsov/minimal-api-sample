@@ -16,4 +16,12 @@ public sealed class AddDeliveryRequestDto
 
   [Required]
   public required DeliveryAddressDto DeliverTo { get; init; }
+
+  public DeliveryEntity ToEntity() => new
+  (
+    id       : Guid.NewGuid(),
+    items    : DeliveryItemDto.ToEntities(Items),
+    pickupAt : PickupAt?.ToEntity(),
+    deliverTo: DeliverTo?.ToEntity()
+  );
 }
