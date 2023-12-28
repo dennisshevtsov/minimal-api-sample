@@ -6,7 +6,9 @@ namespace MinimalApiSample;
 
 public interface IDeliveryRepository
 {
-  public Task<DeliveryEntity?> GetDeliveryAsync(Guid id, CancellationToken cancellationToken);
+  public Task<DeliveryEntity?> GetAsync(Guid id, CancellationToken cancellationToken);
 
-  public Task AddDeliveryAsync(DeliveryEntity delivery, CancellationToken cancellationToken);
+  public Task AddAsync(DeliveryEntity delivery, CancellationToken cancellationToken);
+
+  public Task UpdateAsync(DeliveryEntity delivery, CancellationToken cancellationToken);
 }
