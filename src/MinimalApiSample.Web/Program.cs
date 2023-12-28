@@ -31,4 +31,52 @@ app.MapPost("/api/delivery", async (AddDeliveryRequestDto req, IDeliveryReposito
   );
 });
 
+app.MapPost("/api/delivery/delivery/{id:guid}/start", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
+{
+  ArgumentNullException.ThrowIfNull(repo);
+
+  DeliveryEntity? entity = await repo.GetAsync(id, ct);
+  if (entity is null)
+  {
+    return Results.NotFound();
+  }
+
+  entity.Start();
+  await repo.UpdateAsync(entity, ct);
+
+  return Results.NoContent();
+});
+
+app.MapPost("/api/delivery/delivery/{id:guid}/complete", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
+{
+  ArgumentNullException.ThrowIfNull(repo);
+
+  DeliveryEntity? entity = await repo.GetAsync(id, ct);
+  if (entity is null)
+  {
+    return Results.NotFound();
+  }
+
+  entity.Complete();
+  await repo.UpdateAsync(entity, ct);
+
+  return Results.NoContent();
+});
+
+app.MapPost("/api/delivery/delivery/{id:guid}/cancel", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
+{
+  ArgumentNullException.ThrowIfNull(repo);
+
+  DeliveryEntity? entity = await repo.GetAsync(id, ct);
+  if (entity is null)
+  {
+    return Results.NotFound();
+  }
+
+  entity.Cancel();
+  await repo.UpdateAsync(entity, ct);
+
+  return Results.NoContent();
+});
+
 app.Run();

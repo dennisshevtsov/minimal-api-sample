@@ -29,7 +29,8 @@ public sealed class DeliveryEntityTest
         contact: "test",
         phone: "test",
         address: "test"
-      )
+      ),
+      status: DeliveryStatus.New
     );
 
     // Assert
@@ -58,7 +59,8 @@ public sealed class DeliveryEntityTest
         contact: "test",
         phone: "test",
         address: "test"
-      )
+      ),
+      status: DeliveryStatus.New
     );
 
     // Assert
@@ -90,7 +92,8 @@ public sealed class DeliveryEntityTest
         contact: "test",
         phone: "test",
         address: "test"
-      )
+      ),
+      status: DeliveryStatus.New
     );
 
     // Assert
@@ -122,7 +125,8 @@ public sealed class DeliveryEntityTest
         phone: "test",
         address: "test"
       ),
-      deliverTo: deliverTo
+      deliverTo: deliverTo,
+      status: DeliveryStatus.New
     );
 
     // Assert

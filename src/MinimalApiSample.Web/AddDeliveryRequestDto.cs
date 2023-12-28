@@ -22,6 +22,7 @@ public sealed class AddDeliveryRequestDto
     id       : Guid.NewGuid(),
     items    : DeliveryItemDto.ToEntities(Items),
     pickupAt : PickupAt?.ToEntity(),
-    deliverTo: DeliverTo?.ToEntity()
+    deliverTo: DeliverTo?.ToEntity(),
+    status   : DeliveryStatus.New
   );
 }

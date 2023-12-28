@@ -9,4 +9,6 @@ public interface IDeliveryRepository
   public Task<DeliveryEntity?> GetAsync(Guid id, CancellationToken cancellationToken);
 
   public Task AddAsync(DeliveryEntity delivery, CancellationToken cancellationToken);
+
+  public Task UpdateAsync(DeliveryEntity delivery, CancellationToken cancellationToken);
 }
