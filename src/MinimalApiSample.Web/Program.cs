@@ -2,8 +2,33 @@
 // Licensed under the MIT License.
 // See LICENSE in the project root for license information.
 
+using MinimalApiSample;
+using MinimalApiSample.Web;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 WebApplication app = builder.Build();
-app.MapAddDeliveryHandler();
+
+app.MapGet("/api/delivery/{id:guid}", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
+{
+  ArgumentNullException.ThrowIfNull(repo);
+  DeliveryEntity? entity = await repo.GetAsync(id, ct);
+  return entity is null ? Results.NotFound() : Results.Ok(entity);
+});
+
+app.MapPost("/api/delivery", async (AddDeliveryRequestDto req, IDeliveryRepository repo, CancellationToken ct) =>
+{
+  ArgumentNullException.ThrowIfNull(req);
+  ArgumentNullException.ThrowIfNull(repo);
+
+  DeliveryEntity entity = req.ToEntity();
+  await repo.AddAsync(entity, ct);
+
+  return Results.Created
+  (
+    uri  : default(Uri),
+    value: entity
+  );
+});
+
 app.Run();
