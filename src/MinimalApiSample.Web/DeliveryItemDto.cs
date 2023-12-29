@@ -3,11 +3,34 @@
 // See LICENSE in the project root for license information.
 
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MinimalApiSample.Web;
 
 public sealed class DeliveryItemDto
 {
+  public DeliveryItemDto() { }
+
+  [SetsRequiredMembers]
+  public DeliveryItemDto(string title, string? description, int units, int gramsPerUnit)
+  {
+    Title        = title;
+    Description  = description;
+    Units        = units;
+    GramsPerUnit = gramsPerUnit;
+  }
+
+  [SetsRequiredMembers]
+  public DeliveryItemDto(DeliveryItemEntity deliveryItemEntity)
+  : this
+  (
+      title       : deliveryItemEntity.Title,
+      description : deliveryItemEntity.Description,
+      units       : deliveryItemEntity.Units,
+      gramsPerUnit: deliveryItemEntity.GramsPerUnit
+  )
+  { }
+
   [Required]
   public required string Title { get; init; }
 
@@ -42,5 +65,22 @@ public sealed class DeliveryItemDto
     }
 
     return entities;
+  }
+
+  public static IReadOnlyList<DeliveryItemDto> FromEntities(IReadOnlyList<DeliveryItemEntity> entities)
+  {
+    if (entities is not { Count: > 0 })
+    {
+      return [];
+    }
+
+    DeliveryItemDto[] dtos = new DeliveryItemDto[entities.Count];
+
+    for (int i = 0; i < entities.Count; i++)
+    {
+      dtos[i] = new DeliveryItemDto(entities[i]);
+    }
+
+    return dtos;
   }
 }

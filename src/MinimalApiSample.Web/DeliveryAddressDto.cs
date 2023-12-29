@@ -3,11 +3,32 @@
 // See LICENSE in the project root for license information.
 
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MinimalApiSample.Web;
 
 public sealed class DeliveryAddressDto
 {
+  public DeliveryAddressDto() { }
+
+  [SetsRequiredMembers]
+  public DeliveryAddressDto(string contact, string phone, string address)
+  {
+    Contact = contact;
+    Phone   = phone;
+    Address = address;
+  }
+
+  [SetsRequiredMembers]
+  public DeliveryAddressDto(DeliveryAddressEntity deliveryAddressEntity)
+  : this
+  (
+      contact: deliveryAddressEntity.Contact,
+      phone  : deliveryAddressEntity.Phone,
+      address: deliveryAddressEntity.Address
+  )
+  { }
+
   [Required]
   public required string Contact { get; init; }
 
