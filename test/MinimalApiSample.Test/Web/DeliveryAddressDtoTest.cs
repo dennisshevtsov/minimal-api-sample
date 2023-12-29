@@ -8,7 +8,7 @@ namespace MinimalApiSample.Web.Test;
 public sealed class DeliveryAddressDtoTest
 {
   [TestMethod]
-  public void Constructor_DeliveryEntity_ContactFilled()
+  public void Constructor_DeliveryAddressEntity_ContactFilled()
   {
     // Arrange
     DeliveryAddressEntity deliveryAddressEntity = new
@@ -26,7 +26,7 @@ public sealed class DeliveryAddressDtoTest
   }
 
   [TestMethod]
-  public void Constructor_DeliveryEntity_PhoneFilled()
+  public void Constructor_DeliveryAddressEntity_PhoneFilled()
   {
     // Arrange
     DeliveryAddressEntity deliveryAddressEntity = new
@@ -44,7 +44,7 @@ public sealed class DeliveryAddressDtoTest
   }
 
   [TestMethod]
-  public void Constructor_DeliveryEntity_AddressFilled()
+  public void Constructor_DeliveryAddressEntity_AddressFilled()
   {
     // Arrange
     DeliveryAddressEntity deliveryAddressEntity = new
