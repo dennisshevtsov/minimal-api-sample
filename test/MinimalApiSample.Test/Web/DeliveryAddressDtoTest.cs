@@ -60,4 +60,59 @@ public sealed class DeliveryAddressDtoTest
     // Assert
     Assert.AreEqual(deliveryAddressEntity.Address, deliveryAddressDto.Address);
   }
+
+  [TestMethod]
+  public void ToEntity_DeliveryAddressDto_ContactFilled()
+  {
+    // Arrange
+    DeliveryAddressDto deliveryAddressDto = new
+    (
+      contact: "test contact",
+      phone  : "test phone",
+      address: "test address"
+    );
+
+    // Act
+    DeliveryAddressEntity deliveryAddressEntity = deliveryAddressDto.ToEntity();
+
+    // Assert
+    Assert.AreEqual(deliveryAddressDto.Contact, deliveryAddressEntity.Contact);
+  }
+
+  [TestMethod]
+  public void ToEntity_DeliveryAddressDto_PhoneFilled()
+  {
+    // Arrange
+    DeliveryAddressDto deliveryAddressDto = new
+    (
+      contact: "test contact",
+      phone  : "test phone",
+      address: "test address"
+    );
+
+    // Act
+    DeliveryAddressEntity deliveryAddressEntity = deliveryAddressDto.ToEntity();
+
+    // Assert
+    Assert.AreEqual(deliveryAddressDto.Phone, deliveryAddressEntity.Phone);
+  }
+
+
+  [TestMethod]
+  public void ToEntity_DeliveryAddressDto_AddressFilled()
+  {
+    // Arrange
+    DeliveryAddressDto deliveryAddressDto = new
+    (
+      contact: "test contact",
+      phone  : "test phone",
+      address: "test address"
+    );
+
+    // Act
+    DeliveryAddressEntity deliveryAddressEntity = deliveryAddressDto.ToEntity();
+
+    // Assert
+    Assert.AreEqual(deliveryAddressDto.Address, deliveryAddressEntity.Address);
+  }
 }
