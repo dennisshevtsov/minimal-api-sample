@@ -31,6 +31,13 @@ app.MapPost("/api/delivery", async (AddDeliveryRequestDto req, IDeliveryReposito
   );
 });
 
+app.MapGet("/api/delivery/delivery/{id:guid}", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
+{
+  ArgumentNullException.ThrowIfNull(repo);
+  DeliveryEntity? entity = await repo.GetAsync(id, ct);
+  return entity is null ? Results.NotFound() : Results.Ok(new GetDeliveryResponseDto(entity));
+});
+
 app.MapPost("/api/delivery/delivery/{id:guid}/start", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
 {
   ArgumentNullException.ThrowIfNull(repo);
