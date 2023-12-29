@@ -23,9 +23,9 @@ public sealed class DeliveryAddressDto
   public DeliveryAddressDto(DeliveryAddressEntity deliveryAddressEntity)
   : this
   (
-      contact: deliveryAddressEntity.Contact,
-      phone  : deliveryAddressEntity.Phone,
-      address: deliveryAddressEntity.Address
+    contact: deliveryAddressEntity.Contact,
+    phone  : deliveryAddressEntity.Phone,
+    address: deliveryAddressEntity.Address
   )
   { }
 

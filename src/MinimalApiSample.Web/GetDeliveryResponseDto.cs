@@ -9,11 +9,11 @@ public sealed class GetDeliveryResponseDto(Guid id, IReadOnlyList<DeliveryItemDt
   public GetDeliveryResponseDto(DeliveryEntity deliveryEntity)
   : this
   (
-      id       : deliveryEntity.Id,
-      items    : DeliveryItemDto.FromEntities(deliveryEntity.Items),
-      pickupAt : new DeliveryAddressDto(deliveryEntity.PickupAt),
-      deliverTo: new DeliveryAddressDto(deliveryEntity.DeliverTo),
-      status   : deliveryEntity.Status
+    id       : deliveryEntity.Id,
+    items    : DeliveryItemDto.FromEntities(deliveryEntity.Items),
+    pickupAt : new DeliveryAddressDto(deliveryEntity.PickupAt),
+    deliverTo: new DeliveryAddressDto(deliveryEntity.DeliverTo),
+    status   : deliveryEntity.Status
   )
   { }
 
