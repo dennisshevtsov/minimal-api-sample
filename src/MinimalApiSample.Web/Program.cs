@@ -32,7 +32,7 @@ app.MapPost("/api/delivery", async (AddDeliveryRequestDto req, IDeliveryReposito
   );
 });
 
-app.MapPost("/api/delivery/delivery/{id:guid}/start", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
+app.MapPost("/api/delivery/{id:guid}/start", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
 {
   ArgumentNullException.ThrowIfNull(repo);
 
@@ -48,7 +48,7 @@ app.MapPost("/api/delivery/delivery/{id:guid}/start", async (Guid id, IDeliveryR
   return Results.NoContent();
 });
 
-app.MapPost("/api/delivery/delivery/{id:guid}/complete", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
+app.MapPost("/api/delivery/{id:guid}/complete", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
 {
   ArgumentNullException.ThrowIfNull(repo);
 
@@ -64,7 +64,7 @@ app.MapPost("/api/delivery/delivery/{id:guid}/complete", async (Guid id, IDelive
   return Results.NoContent();
 });
 
-app.MapPost("/api/delivery/delivery/{id:guid}/cancel", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
+app.MapPost("/api/delivery/{id:guid}/cancel", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
 {
   ArgumentNullException.ThrowIfNull(repo);
 
