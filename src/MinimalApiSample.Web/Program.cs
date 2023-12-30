@@ -28,7 +28,7 @@ app.MapPost("/api/delivery", async (AddDeliveryRequestDto req, IDeliveryReposito
   return Results.Created
   (
     uri  : default(Uri),
-    value: entity
+    value: new GetDeliveryResponseDto(entity)
   );
 });
 
