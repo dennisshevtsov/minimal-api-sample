@@ -6,6 +6,7 @@ using MinimalApiSample;
 using MinimalApiSample.Web;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+builder.Services.AddInMemoryData();
 
 WebApplication app = builder.Build();
 
