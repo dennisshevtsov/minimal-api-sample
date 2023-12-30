@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MinimalApiSample.Data\MinimalApiSample.Data.csproj" />
+    <ProjectReference Include="..\..\src\MinimalApiSample.Web\MinimalApiSample.Web.csproj" />
   </ItemGroup>
 
 </Project>

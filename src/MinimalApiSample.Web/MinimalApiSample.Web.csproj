@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MinimalApiSample\MinimalApiSample.csproj" />
+    <ProjectReference Include="..\MinimalApiSample.Data\MinimalApiSample.Data.csproj" />
   </ItemGroup>
 
 </Project>
