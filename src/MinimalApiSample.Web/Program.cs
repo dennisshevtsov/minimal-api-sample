@@ -14,7 +14,7 @@ app.MapGet("/api/delivery/{id:guid}", async (Guid id, IDeliveryRepository repo, 
 {
   ArgumentNullException.ThrowIfNull(repo);
   DeliveryEntity? entity = await repo.GetAsync(id, ct);
-  return entity is null ? Results.NotFound() : Results.Ok(entity);
+  return entity is null ? Results.NotFound() : Results.Ok(new GetDeliveryResponseDto(entity));
 });
 
 app.MapPost("/api/delivery", async (AddDeliveryRequestDto req, IDeliveryRepository repo, CancellationToken ct) =>
@@ -28,18 +28,11 @@ app.MapPost("/api/delivery", async (AddDeliveryRequestDto req, IDeliveryReposito
   return Results.Created
   (
     uri  : default(Uri),
-    value: entity
+    value: new GetDeliveryResponseDto(entity)
   );
 });
 
-app.MapGet("/api/delivery/delivery/{id:guid}", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
-{
-  ArgumentNullException.ThrowIfNull(repo);
-  DeliveryEntity? entity = await repo.GetAsync(id, ct);
-  return entity is null ? Results.NotFound() : Results.Ok(new GetDeliveryResponseDto(entity));
-});
-
-app.MapPost("/api/delivery/delivery/{id:guid}/start", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
+app.MapPost("/api/delivery/{id:guid}/start", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
 {
   ArgumentNullException.ThrowIfNull(repo);
 
@@ -55,7 +48,7 @@ app.MapPost("/api/delivery/delivery/{id:guid}/start", async (Guid id, IDeliveryR
   return Results.NoContent();
 });
 
-app.MapPost("/api/delivery/delivery/{id:guid}/complete", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
+app.MapPost("/api/delivery/{id:guid}/complete", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
 {
   ArgumentNullException.ThrowIfNull(repo);
 
@@ -71,7 +64,7 @@ app.MapPost("/api/delivery/delivery/{id:guid}/complete", async (Guid id, IDelive
   return Results.NoContent();
 });
 
-app.MapPost("/api/delivery/delivery/{id:guid}/cancel", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
+app.MapPost("/api/delivery/{id:guid}/cancel", async (Guid id, IDeliveryRepository repo, CancellationToken ct) =>
 {
   ArgumentNullException.ThrowIfNull(repo);
 
